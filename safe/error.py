@@ -20,9 +20,9 @@
 ##    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 class TypeSafetyError(TypeError):
-    __slots__ = ('field_name', 'actual_type', 'proper_type')
-    def __init__(self, *, field_name, actual_type, proper_type):
-        TypeError.__init__(self, '%s should be a %s, not a %s' % (field_name, proper_type.__name__, actual_type.__name__))
-        self.field_name = field_name
-        self.actual_type = actual_type
-        self.proper_type = proper_type
+    __slots__ = ('name', 'actual', 'proper')
+    def __init__(self, *, name, actual, proper):
+        TypeError.__init__(self, '%s should be a %s, not a %s' % (name, proper.__name__, actual.__name__))
+        self.name = name
+        self.actual = actual
+        self.proper = proper

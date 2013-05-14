@@ -5,3 +5,4 @@
     modules within this package are just for better source control.
 '''
 from .error import TypeSafetyError
+from .args import checked

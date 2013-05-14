@@ -1,8 +1,8 @@
 import unittest
 
-import safe
+from safe import TypeSafetyError
 
 class TestError(unittest.TestCase):
     def test_error(self):
-        with self.assertRaisesRegex(safe.TypeSafetyError, '^foo should be a str, not a int$'):
-            raise safe.TypeSafetyError(field_name='foo', proper_type=str, actual_type=int)
+        with self.assertRaisesRegex(TypeSafetyError, '^foo should be a str, not a int$'):
+            raise TypeSafetyError(name='foo', proper=str, actual=int)
