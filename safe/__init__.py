@@ -6,3 +6,4 @@
 '''
 from .error import TypeSafetyError
 from .args import checked
+from .slots import meta

@@ -2,7 +2,7 @@
 
 ##    error.py - a specific exception type for typecheck violations
 ##
-##    Copyright © 2012 Ben Longbons <b.r.longbons@gmail.com>
+##    Copyright © 2012-2013 Ben Longbons <b.r.longbons@gmail.com>
 ##
 ##    This file is part of The Mana World (Athena server)
 ##
