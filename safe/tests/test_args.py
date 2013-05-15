@@ -90,3 +90,21 @@ class TestChecked(unittest.TestCase):
 
         self.assertEqual(foo.__name__, 'foo')
         self.assertEqual(foo.__doc__, 'docstring')
+
+class TestClasses(unittest.TestCase):
+    def test_normal(self):
+        @checked
+        class Foo:
+            def __init__(self, value: int) -> type(None):
+                self.value = value
+
+        Foo(0)
+        with self.assertRaises(TypeSafetyError):
+            Foo('hello')
+
+    def test_oops(self):
+        with self.assertRaises(KeyError):
+            @checked
+            class Foo:
+                def __init__(self):
+                    'Missing -> return annotation'

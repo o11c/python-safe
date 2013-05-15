@@ -20,10 +20,19 @@
 ##    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 import inspect
+from types import FunctionType
 
 from .error import TypeSafetyError
 
-def checked(fn):
+def checked(a):
+    if isinstance(a, type):
+        return checked_class(a)
+    if isinstance(a, FunctionType):
+        return checked_function(a)
+
+    assert False, 'Can only check functions and classes'
+
+def checked_function(fn):
     ''' Decorator for type-checked arguments.
 
         Creates a new function that mimics the old one.
@@ -87,3 +96,17 @@ def checked(fn):
     # expose, to be able to check without calling
     inner.check_args = check
     return inner
+
+def checked_class(cls):
+    ''' Add type-checkers to all of a class's methods.
+
+        Requires first adjusting their annotations.
+    '''
+    for name, func in vars(cls).items():
+        if not isinstance(func, FunctionType):
+            continue
+        assert 'self' not in func.__annotations__
+        if 'self' == func.__code__.co_varnames[0]:
+            func.__annotations__['self'] = cls
+        setattr(cls, name, checked_function(func))
+    return cls
