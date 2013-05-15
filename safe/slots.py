@@ -41,7 +41,7 @@ class SlotTypeDescriptor:
     def __delete__(self, obj):
         raise AttributeError('Attempt to delete attribute ' + self.name)
 
-class meta(type):
+class Meta(type):
     ''' A metaclass for type-safety of attributes
     '''
     def __call__(self, *args, **kwargs):

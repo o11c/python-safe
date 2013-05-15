@@ -1,6 +1,6 @@
 import unittest
 
-from safe import template, meta, TypeSafetyError
+from safe import template, Meta, TypeSafetyError
 
 class TestTemplate(unittest.TestCase):
     def test_ident(self):
@@ -29,7 +29,7 @@ class TestTemplate(unittest.TestCase):
     def test_safe(self):
         @template
         def Wrapper(T):
-            class Wrapper(metaclass=meta):
+            class Wrapper(metaclass=Meta):
                 ''' Just hold a T
                 '''
                 __slots__ = {'value': T}

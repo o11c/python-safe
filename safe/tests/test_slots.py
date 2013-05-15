@@ -1,21 +1,21 @@
 import unittest
 
-from safe import TypeSafetyError, meta
+from safe import TypeSafetyError, Meta
 
 class TestMeta(unittest.TestCase):
     def test_repr(self):
-        class Foo(metaclass=meta):
+        class Foo(metaclass=Meta):
             __slots__ = {}
         self.assertEqual(repr(Foo), "<safe class 'safe.tests.test_slots.Foo'>")
 
     def test_init(self):
-        class Foo(metaclass=meta):
+        class Foo(metaclass=Meta):
             __slots__ = {'x': int}
         with self.assertRaises(AttributeError):
             Foo()
 
     def test_external(self):
-        class Foo(metaclass=meta):
+        class Foo(metaclass=Meta):
             __slots__ = {'x': int, 'y': str}
             def __init__(self, x, y):
                 self.x = x

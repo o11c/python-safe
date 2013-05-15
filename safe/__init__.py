@@ -6,5 +6,6 @@
 '''
 from .error import TypeSafetyError
 from .args import checked
-from .slots import meta
+from .slots import Meta
 from .templates import template
+from .duck import Duck
