@@ -15,7 +15,8 @@ class TestChecked(unittest.TestCase):
     def test_simple(self):
         @checked
         def foo() -> str:
-            return ''
+            rv = ''
+            return rv
         foo()
 
         @checked

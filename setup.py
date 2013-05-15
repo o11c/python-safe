@@ -10,7 +10,8 @@ setup(
     author_email='b.r.longbons@gmail.com',
     url='http://github.com/o11c/python-safe',
     packages=[
-        'safe'
+        'safe',
+        'safe.stl',
     ],
     classifiers=[
         'Development Status :: 3 - Alpha',

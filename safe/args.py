@@ -38,7 +38,7 @@ def checked_function(fn):
         Creates a new function that mimics the old one.
     '''
     spec = inspect.getfullargspec(fn)
-    for name in fn.__code__.co_varnames:
+    for name in fn.__code__.co_varnames[:fn.__code__.co_argcount]:
         spec.annotations[name]
     spec.annotations['return']
 
